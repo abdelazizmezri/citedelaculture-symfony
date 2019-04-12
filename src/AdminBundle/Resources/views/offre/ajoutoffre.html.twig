@@ -1,0 +1,190 @@
+{% extends "baseBack.html.twig" %}
+{% block container %}
+    <script type="text/javascript" src="{{ asset('moment.js') }}"></script>
+    <style>
+        .red{
+            color  : red;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ asset('notif/lobibox.min.css') }}"/>
+
+    <link rel="stylesheet" href="{{ asset('datePicker.css') }}" type="text/css">
+    <div class="row">
+        <div class="col-md-3"> </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">Carte d'Offre</div>
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3 class="text-center title-2">Ajouter un Offre</h3>
+                    </div>
+                    <hr>
+                    {#<form action="" method="post" novalidate="novalidate">#}
+                    {{ form_start(form, {'attr': {'onsubmit':'return validateForm()' }} ) }}
+
+                    <div class="form-group">
+                        <label for="cc-payment" class="control-label mb-1">Selectionner un evenement</label>
+                        {{ form_widget(form.evenement, {'id':'produit','attr': {'class': 'form-control' }}) }}
+                        <span id="msg"> </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cc-payment" class="control-label mb-1">Selectionner une image</label>
+                        {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <label for="cc-payment" class="control-label mb-1">Remise</label>
+                        {{ form_widget(form.remise, {'id':'remise','attr': {'class': 'form-control' , 'onkeyup':'verifRemise()'}}) }}
+                        <span id="msgremise"> </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cc-payment" class="control-label mb-1">Date debut</label> <br>
+                        {{ form_widget(form.dateDebut ,{'id':'datedebut'}) }}
+                    </div>
+                    <div class="form-group">
+                        <label for="cc-payment" class="control-label mb-1">Date fin</label> <br>
+                        {{ form_widget(form.dateFin ,{'id':'datefin'}) }}
+                    </div>
+                    <div class="form-group">
+                        <label for="cc-payment" class="control-label mb-1">Description</label>
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control datetime-local'}}) }}
+                    </div>
+
+                </div>
+                <button id="payment-button" type="submit" class="btn btn-dark">Ajouter Offre</button>
+                {#</form>#}
+                {{ form_end(form) }}
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('notif/lobibox.js') }}"></script>
+    <script src="{{ asset('datePicker.js') }}"></script>
+
+    <script>
+        var offre = false ;
+        var tauxRemise = false ;
+        $(document).ready(function() {
+
+            var productId = $("#produit")
+                .children("option:selected")
+                .val();
+              verifAjax(productId);
+
+            $("#produit").change(function() {
+
+                var productId = $(this)
+                    .children("option:selected")
+                    .val();
+                verifAjax(productId);
+
+
+            });
+        });
+        function verifAjax(data){
+            var test =   $.ajax({
+                type: "GET",
+                url: "{{ path('verification') }}",
+                data: {
+                    'produit_id' : data
+                },
+                dataType: "text",
+                success: function(msg){
+                    offre = msg ;
+
+                    if(offre == "false"){
+                        $("#msg").empty();
+                        $("#msg").append('<p class="red">  Ce evenement  a deja un offre encour  </p>')
+                    }else{
+                        $("#msg").empty();
+                    }
+                }
+            });
+        }
+
+       function validateForm(){
+
+           if(offre=="false"){
+               Lobibox.notify('error', {
+                   title: 'Offre Existant ',
+                   msg: ' l evenement  a deja un offre encour '
+               });
+               return false;
+           }else{
+               var date1 = $("#datedebut").val();
+               var date2 = $("#datefin").val();
+
+             //  var d1 = new Date(date1);
+               var d1 = moment(date1, "YYYY-MM-DD").add(1, 'days');
+               var d2 = new Date(date2);
+
+               var d3 = new Date();
+               if(d1 > d2)
+               {
+                   Lobibox.notify('error', {
+                       title: 'Date erreur ',
+                       msg: 'date debut > date fin  '
+                   });
+                   return false;
+               }
+               if(d1 < d3)
+               {
+                   Lobibox.notify('error', {
+                       title: 'Date erreur ',
+                       msg: 'date debut <  date  aujourd hui'
+                   });
+                   return false;
+               }
+
+               if(!tauxRemise)
+               {
+                   Lobibox.notify('error', {
+                       title: 'Remise',
+                       msg: 'Vérifier le Taux remise'
+                   });
+                   return false;
+               }
+
+               Lobibox.notify('success', {
+                   title: 'offre ajout',
+                   msg: 'Votre offre est ajouté avec succes'
+               });
+
+
+               setTimeout(()=>{
+                   return true ;
+               },4000)
+
+           }
+
+        }
+    function verifRemise(){
+            val = document.getElementById('remise').value;
+            if( !$.isNumeric( val)){
+                $("#msgremise").empty();
+                $("#msgremise").append('<p class="red">  le taux doit etre numerique  </p>')
+                tauxRemise = false ;
+            }else{
+                $("#msgremise").empty();
+                if(val <= 0 ){
+                    $("#msgremise").empty();
+                    $("#msgremise").append('<p class="red">  le taux doit etre positif </p>')
+                    tauxRemise = false ;
+                } else if(val > 100){
+                    $("#msgremise").empty();
+                    $("#msgremise").append('<p class="red">  le taux ne doit pas  depasser pas 100 % </p>')
+                    tauxRemise = false ;
+                }else{
+                    $("#msgremise").empty();
+                    tauxRemise = true ;
+                }
+            }
+    }
+    </script>
+
+{% endblock %}

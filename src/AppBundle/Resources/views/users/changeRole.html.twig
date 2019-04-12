@@ -1,0 +1,57 @@
+{% extends "baseBack.html.twig" %}
+{% block container %}
+
+    <style>
+        .red{
+            color  : red;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ asset('notif/lobibox.min.css') }}"/>
+
+
+    <div class="row">
+        <div class="col-md-3"> </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3 class="text-center title-2">Changer le role</h3>
+                    </div>
+                    <hr>
+                    {#<form action="" method="post" novalidate="novalidate">#}
+                  <form action="{{ path('changeRole',{'id':user}) }} " method="post">
+
+                    <div class="form-group">
+                        <label for="cc-payment" class="control-label mb-1">Selectionner le role</label>
+                       <select class="form-control" name="role">
+                        <option value="ROLE USER">ROLE USER</option>
+                           <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                           <option value="ROLE_RESPONSABLE_POLE">ROLE_RESPONSABLE_POLE</option>
+                           <option value="ROLE_RESPONSABLE_CLUB">ROLE_RESPONSABLE_CLUB</option>
+                           <option value="ROLE_MEMBRE_CLUB">ROLE_MEMBRE_CLUB</option>
+                       </select>
+                        <span id="msg"> </span>
+                    </div>
+
+
+
+                <button id="payment-button" type="submit" class="btn btn-dark">Modifier Role</button>
+                {#</form>#}
+                  </form>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('notif/lobibox.js') }}"></script>
+    <script src="{{ asset('datePicker.js') }}"></script>
+
+
+
+{% endblock %}

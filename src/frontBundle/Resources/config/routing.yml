@@ -1,0 +1,44 @@
+
+afficheoffrefront:
+    path:     /
+    defaults: { _controller: offreBundle:Offre:afficheoffrefront }
+
+offredetailAjax:
+    path:     /offredetailAjax
+    defaults: { _controller: frontBundle:Offre:offreAjax }
+
+ratingAjax:
+    path:     /ratingAjax
+    defaults: { _controller: frontBundle:Offre:rating }
+
+bestOffre:
+    path:     /bestoffre
+    defaults: { _controller: frontBundle:Offre:bestOffre }
+
+desabonner:
+    path:     /desabonner
+    defaults: { _controller: frontBundle:Offre:desabonner }
+
+abonner:
+    path:     /abonner
+    defaults: { _controller: frontBundle:Offre:abonner }
+
+reclamer:
+    path:     /reclamer
+    defaults: { _controller: frontBundle:Reclamation:reclamer }
+
+reclamerAjax:
+    path:     /reclamerAjax
+    defaults: { _controller: frontBundle:Reclamation:reclamerAjax }
+
+mesReclamation:
+    path:     /reclamer/mesReclamation/
+    defaults: { _controller: frontBundle:Reclamation:mesReclamation }
+
+supprimerReclamation:
+    path:     /reclamer/mesReclamation/supprimer/{id}
+    defaults: { _controller: frontBundle:Reclamation:supprimerReclamation }
+
+modifierReclamation:
+    path:     /reclamer/modifier/{id}
+    defaults: { _controller: frontBundle:Reclamation:modifierReclamation }

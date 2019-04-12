@@ -1,0 +1,137 @@
+{% extends "@Admin/default/index.html.twig" %}
+{% block container %}
+    <link href="{{ asset('jTable/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('notif/lobibox.min.css') }}"/>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <!-- DATA TABLE -->
+            <h3 class="title-5 m-b-35">Liste Des reclamations</h3>
+            <td class="table-responsive table-responsive-data2">
+                <table class="table  nomargin" cellspacing="0" width="100%" id="example">
+                    <thead>
+                    <tr>
+
+                        <th>Id</th>
+                        <th>titre</th>
+                        <th>description</th>
+
+
+                        <Th>PRIORITE</Th>
+                        <th>User</th>
+
+                        <th> Evenement</th>
+
+
+
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in reclamations %}
+                    <tr class="tr-shadow">
+
+                        <td>{{ c.id }}</td>
+                        <td>
+                            <span class="block-email">{{ c.titre }}</span>
+                        </td>
+
+                        <td>
+                            <span class="block-email">{{ c.description }}</span>
+                        </td>
+
+                        <td>{{ c.priorite}}</td>
+
+
+                        <td>
+                            <span class="status--process">{{ c.user.username }}</span>
+                        </td>
+
+
+                        <td>
+                            {% if c.evenement != null %}
+                                <span class="status--process">{{ c.evenement.description }}</span>
+                            {% endif %}
+                        </td>
+
+
+                        <td>
+
+                            {% if   c.status == false  %}
+                                <a href="#" onclick="verifReclamation('{{ c.id }}')"> verifier </a>
+
+                            {% endif %}
+
+                            <br>
+                            {% if   c.user.ban == false  %}
+                                <a href="#" onclick="ban('{{ c.user.id }}')"> Ban User </a>
+                            {% else %}
+                                <a href="#" onclick="Unban('{{ c.user.id }}')"> autorise </a>
+                            {% endif %}
+
+
+
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+                    {% endfor %}
+                </table>
+        </div>
+        <!-- END DATA TABLE -->
+             <div class="col-md-1">
+    </div>
+
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script type="text/javascript" src="{{ asset('jTable/jquery-2.1.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('jTable/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('notif/lobibox.js') }}"></script>
+    <script type="text/javascript">$(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+
+
+    <script>
+        function verifReclamation(data){
+            console.log(data)
+            Lobibox.confirm({
+                msg: "Voulez vous confirmer cette offre",
+                callback: function ($this, type, ev) {
+                    if(type =="yes"){
+                        window.location.href = "verifReclamation/"+data
+                    }
+                }
+            });
+        }
+
+        function ban(data){
+            console.log(data)
+            Lobibox.confirm({
+                msg: "Voulez vous ban cet utilisateur",
+                callback: function ($this, type, ev) {
+                    if(type =="yes"){
+                        window.location.href = "banUser/"+data
+                    }
+                }
+            });
+        }
+
+        function Unban(data){
+            console.log(data)
+            Lobibox.confirm({
+                msg: "Voulez vous autoriser cet utilisateur",
+                callback: function ($this, type, ev) {
+                    if(type =="yes"){
+                        window.location.href = "unbanUser/"+data
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}

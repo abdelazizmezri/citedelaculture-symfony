@@ -1,0 +1,380 @@
+{% extends "baseFront.html.twig" %}
+
+{% block offre %}
+    <script type="text/javascript" src="{{ asset('moment.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('notif/lobibox.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('contdown/compiled/flipclock.css') }}">
+
+    <!-- Button trigger modal -->
+<div class="row">
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <button class="btn btn-success" onclick="topOffre()" >top offre</button>
+        {% if app.user %}
+        {% if app.user.username != "admin" %}
+              {% if app.user.subscribe  %}
+             <span id="abonner">  <button class="btn btn-success" onclick="desabonner()" >desabonnez vous</button></span>
+                {% else %}
+
+                    <button class="btn btn-success" onclick="abonner()" >abonnez vous</button>
+              {% endif %}
+
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+<br>
+
+
+    <div class="row">
+        {% for c in offres %}
+        <!-- Single Service Area -->
+        <div class="col-12 col-sm-6 col-lg-3" onclick="test('{{ c.id}}', '{{ c.dateFin | date('Y/m/d') }}','{{ c.evenement.description }}','{{ c.dateFin | date('Y/m/d') }}','{{ c.remise }}')">
+            <div class="single-service-area mb-80 wow fadeInUp" data-wow-delay="200ms">
+                <img src="{{ asset('') }}{{ vich_uploader_asset(c, 'imageFile') }}" width="150px" height="150px" >
+                <h5>{{ c.evenement.description  }}</h5>
+                <p><del>{{ c.prixDebut }}</del> </p>
+                <p>remise : {{ c.remise }}</p>
+                <p>prix final :{{ c.prixFinal }}</p>
+            </div>
+        </div>
+
+
+        {% endfor %}
+
+
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block modal %}
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="width: 144% !important;">
+
+                <div class="modal-body">
+
+                    <div class="clock" style="margin:2em;"></div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+
+                    <p>Evenement : <b> <span id="produit">  </span> </b> </p>
+                    <p>Remise : <b><span id="remise">  </span> </b> </p>
+                            <p>Prix debut  :  <b> <span id="prixD">  </span> </b> </p>
+                            <p>Prix Final :  <b> <span id="prixF">  </span>  </b></p>
+                    <p>date Debut :  <b><span id="dateD">  </span></b>  </p>
+                    <p>date Fin :  <b><span id="dateF">  </span></b>  </p>
+                        </div>
+                        <div class="col-md-5">
+
+                            <p> Rating</p>
+
+                            <div>
+                                <h3>
+                                    {% if app.user %}
+                                    {% if app.user.username != "admin" %}
+                                    <i class="fa fa-thumbs-up" style="color: #00ad5f;" onclick="rating(true)"></i>
+                                    <span id="like"></span>
+                                    <i class="fa fa-thumbs-down" style="color: red;" onclick="rating(false)"></i>
+                                    <span id="dislike"></span>
+                                    {% else %}
+                                        <i class="fa fa-thumbs-up" style="color: #00ad5f;" ></i>
+                                        <span id="like"></span>
+                                        <i class="fa fa-thumbs-down" style="color: red;" ></i>
+                                        <span id="dislike"></span>
+                                    {% endif %}
+                                    {% else %}
+                                        <i class="fa fa-thumbs-up" style="color: #00ad5f;" ></i>
+                                        <span id="like"></span>
+                                        <i class="fa fa-thumbs-down" style="color: red;" ></i>
+                                        <span id="dislike"></span>
+                                    {% endif %}
+                                </h3>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="myModalsab" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" >
+
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+              <label> Inserez votre numero </label>
+                            <input type="number"  id="tel" class="form-control">
+                            <span id="message"></span>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" onclick="sabonner()"> Valider</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+
+    <script src="{{ asset('notif/lobibox.js') }}"></script>
+
+
+
+    <script type="text/javascript">
+        var offre = {};
+        function test(id,date,libelle , debut , remise  ){
+            $("#myModal").modal();
+            getoffreDetails(id);
+            var clock;
+
+            var currentDate = new Date();
+
+            // Set some date in the future. In this case, it's always Jan 1
+            var futureDate = new Date(date);
+
+            // Calculate the difference in seconds between the future and current date
+            var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+            if(currentDate > futureDate )
+            {
+                // Instantiate a coutdown FlipClock
+                clock = $('.clock').FlipClock(currentDate, {
+                    clockFace: 'DailyCounter',
+                    countdown: true
+                });
+            }
+            else
+            {
+                // Instantiate a coutdown FlipClock
+                clock = $('.clock').FlipClock(diff, {
+                    clockFace: 'DailyCounter',
+                    countdown: true
+                });
+            }
+        }
+
+   function getoffreDetails(id){
+
+            $.ajax({
+                type: "GET",
+                url: "{{ path('offredetailAjax') }}",
+                data: {
+                    'produit_id' : id
+                },
+                dataType: "text",
+                success: function(msg){
+                    offre = JSON.parse(msg)  ;
+
+                    $('#produit').html(offre.evenement.description );
+                    $('#remise').html(offre.remise);
+                    $('#dateD').html(moment(offre.dateDebut).add(1, "days").format('Y/MM/d'));
+                    $('#dateF').html(moment(offre.dateFin).add(1, "days").format('Y/MM/d'));
+                    $('#prixD').html(offre.prixDebut);
+                    $('#prixF').html(offre.prixFinal);
+                    $('#like').html(offre.likesnumber);
+                    $('#dislike').html(offre.dislikesnumber);
+                }
+            });
+        }
+        {% if app.user %}
+        function rating(type){
+
+            $.ajax({
+                type: "GET",
+                url: "{{ path('ratingAjax') }}",
+                data: {
+                    'offre_id' : offre.id,
+                    'user_id' : {{ app.user.id }} ,
+                    'like' : type
+                },
+                dataType: "text",
+                success: function(msg){
+                    if(msg != "false"){
+                        data = JSON.parse(msg) ;
+                        console.log(JSON.parse(msg))   ;
+                        $('#like').html(data.offre.likesnumber);
+                        $('#dislike').html(data.offre.dislikesnumber);
+                        Lobibox.notify('success', {
+                            title: 'Rating ',
+                            msg: 'Merci pour votre engagement '
+                        });
+                    }else{
+                        Lobibox.notify('warning', {
+                            title: 'Rating ',
+                            msg: 'Vous avez deja fait le raitng  '
+                        });
+                    }
+
+
+
+
+                }
+            });
+        }
+        {% endif %}
+        function topOffre(){
+
+
+
+            $.ajax({
+                type: "GET",
+                url: "{{ path('bestOffre') }}",
+
+                dataType: "text",
+                success: function(msg){
+                    offre = JSON.parse(msg)  ;
+
+                    offre  = offre[0];
+                    console.log(offre)
+                    $('#produit').html(offre.evenement.description );
+                    $('#remise').html(offre.remise);
+                    $('#dateD').html(moment(offre.dateDebut).add(1, "days").format('Y/MM/d'));
+                    $('#dateF').html(moment(offre.dateFin).add(1, "days").format('Y/MM/d'));
+                    $('#prixD').html(offre.prixDebut);
+                    $('#prixF').html(offre.prixFinal);
+                    $('#like').html(offre.likesnumber);
+                    $('#dislike').html(offre.dislikesnumber);
+
+
+
+                    var clock;
+                    var currentDate = new Date();
+                    // Set some date in the future. In this case, it's always Jan 1
+                    var futureDate = new Date(offre.dateFin);
+                    console.log(futureDate)
+                    // Calculate the difference in seconds between the future and current date
+                    var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+                    if(currentDate > futureDate )
+                    {
+                        // Instantiate a coutdown FlipClock
+                            clock = $('.clock').FlipClock(currentDate, {
+                                clockFace: 'DailyCounter',
+                                countdown: true
+                            });
+                        }
+                    else
+                    {
+                        // Instantiate a coutdown FlipClock
+                        clock = $('.clock').FlipClock(diff, {
+                            clockFace: 'DailyCounter',
+                            countdown: true
+                        });
+                    }
+                }
+            });
+
+
+
+
+            $("#myModal").modal();
+        }
+             function abonner(){
+                 $("#myModalsab").modal();
+             }
+        {% if app.user %}
+             function sabonner(){
+                 val = document.getElementById('tel').value;
+                 if( !$.isNumeric( val)){
+                     $("#message").empty();
+                     $("#message").append('<p style="color:red">  le numero est invalid </p>')
+                    return false ;
+                 }else{
+                     if(val <20000000 || val>99999999){
+                         $("#message").empty();
+                         $("#message").append('<p style="color:red">  le numero est invalid </p>')
+                         return false ;
+                     }else{
+
+                         $.ajax({
+                             type: "GET",
+                             url: "{{ path('abonner') }}",
+                             data: {
+                                 'user_id' : {{ app.user.id }} ,
+                                 'tel' :val ,
+                             },
+                             dataType: "text",
+                             success: function(msg){
+                                 if(msg != "false"){
+                                     Lobibox.notify('success', {
+                                         title: 'offre ',
+                                         msg: 'Vous etes abonné  '
+                                     });
+
+
+                                 }else{
+                                     alert("probleme ajax")
+                                 }
+
+                             }
+                         });
+                     }
+                 }
+                 $("#abonner").empty();
+                 $("#abonner").append('<button class="btn btn-success" onclick="desabonner()" >desabonnez vous</button>');
+                 $("#myModalsab").modal('hide');
+             }
+        {% endif %}
+        {% if app.user %}
+        function desabonner(){
+            $.ajax({
+                type: "GET",
+                url: "{{ path('desabonner') }}",
+                data: {
+                    'user_id' : {{ app.user.id }} ,
+                },
+                dataType: "text",
+                success: function(msg){
+                    if(msg != "false"){
+                        Lobibox.notify('warning', {
+                            title: 'offre ',
+                            msg: 'Vous  n etes pas encore abonne   '
+                        });
+                        $("#abonner").empty();
+                        $("#abonner").append('<button class="btn btn-success" onclick="abonner()" >abonnez vous</button>');
+
+                    }else{
+                        alert("probleme ajax")
+                    }
+
+                }
+            });
+        }
+        {% endif %}
+    </script>
+
+{% endblock js %}
+

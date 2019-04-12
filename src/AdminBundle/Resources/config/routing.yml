@@ -1,0 +1,55 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+
+
+
+
+addoffre:
+    path:     /addoffre
+    defaults: { _controller: AdminBundle:Offre:addoffre }
+
+verification:
+    path:     /verification
+    defaults: { _controller: AdminBundle:Offre:verifOffre }
+
+afficheoffre:
+    path:     /afficheoffre
+    defaults: { _controller: AdminBundle:Offre:afficheoffre }
+
+deleteoffre:
+    path:     /deleteoffre/{id}
+    defaults: { _controller: AdminBundle:Offre:deleteoffre }
+
+updateoffre:
+    path:     /updateoffre/{id}
+    defaults: { _controller: AdminBundle:Offre:updateoffre }
+ajax_search:
+    path:     /search
+    defaults: { _controller: AdminBundle:Offre:search }
+
+like_actualite:
+    path:     /like/{id}
+    defaults: { _controller: AdminBundle:Offre:like }
+
+afficheoffrefront:
+    path:     /offrefront
+    defaults: { _controller: AdminBundle:Offre:afficheoffrefront }
+
+afficherReclamation:
+    path:     /reclamations
+    defaults: { _controller: AdminBundle:Reclamation:affichereclamation }
+
+verifReclamation:
+    path:     /verifReclamation/{id}
+    defaults: { _controller: AdminBundle:Reclamation:verifclamation }
+
+banUser:
+    path:     /banUser/{id}
+    defaults: { _controller: AdminBundle:Reclamation:banUser }
+
+unbanUser:
+    path:     /unbanUser/{id}
+    defaults: { _controller: AdminBundle:Reclamation:unbanUser }
+
+

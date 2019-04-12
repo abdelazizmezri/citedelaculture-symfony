@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="flipclock.css">
+    <script src="jquery-2.2.4.min.js"></script>
+</head>
+<body>
+        <div class="clock" style="margin:2em;"></div>
+</body>
+<script>
+
+var clock;
+
+            var currentDate = new Date();
+
+            // Set some date in the future. In this case, it's always Jan 1
+            var futureDate = new Date("2019-08-21");
+
+            // Calculate the difference in seconds between the future and current date
+            var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+            if(currentDate > futureDate )
+            {
+                // Instantiate a coutdown FlipClock
+                clock = $('.clock').FlipClock(diff, {
+                    clockFace: 'DailyCounter',
+                    countdown: true
+                });
+            }</script>
+
+<script src="flipclock.js"></script>
+</html>

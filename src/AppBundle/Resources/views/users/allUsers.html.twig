@@ -1,0 +1,104 @@
+{% extends "baseBack.html.twig" %}
+
+{% block container %}
+
+    <link href="{{ asset('jTable/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{ asset('moment.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('notif/lobibox.min.css') }}"/>
+    <div class="row">
+         <div class="col-md-1">
+         </div>
+        <div class="col-md-11">
+        <h2> liste user </h2>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+
+        </div>
+        <div class="col-md-11">
+
+
+            <table class="table  nomargin" cellspacing="0" width="100%" id="example">
+                <thead>
+
+                <tr>
+
+                    <th>Id</th>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>actif</th>
+                    <th>last login</th>
+                    <th>Role</th>
+
+
+                    <th>action</th>
+                </tr>
+                </thead>
+                <tbody >
+                {% for u in users %}
+                    {% if u.id != app.user.id %}
+                    <tr class="tr-shadow"  >
+
+                        <td>{{ u.id }}</td>
+                        <td>
+                            <span >{{ u.username }}</span>
+                        </td>
+                        <td>
+                            <span >{{ u.email }}</span>
+                        </td>
+
+                        <td>
+                            <span >
+                                {% if u.enabled %}
+                                    actif
+                                {% else %}
+                                        desactive
+                                    {% endif %}
+                                </span>
+                        </td>
+
+                        <td> <span >{{ u.lastLogin|date("Y/m/d h:m:s") }}</span>
+                        </td>
+                        <td> <span >{{ u.roles[0]}}</span>
+
+                        </td>
+
+
+                        <td>
+                            <a href="{{ path('changeRole',{'id':u.id}) }}" >   changer role</a>
+
+
+
+                        </td>
+                    </tr>
+                        {% endif %}
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+{% endblock %}
+
+
+{% block js %}
+
+<script type="text/javascript" src="{{ asset('jTable/jquery-2.1.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('jTable/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('notif/lobibox.js') }}"></script>
+    <script type="text/javascript">$(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "baseFront.html.twig" %}
+
+{% block reclamation %}
+
+    <link href="{{ asset('jTable/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{ asset('moment.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('notif/lobibox.min.css') }}"/>
+
+<br> <br>
+    <div class="row">
+        <div class="col-md-2"> </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">Reclamation</div>
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3 class="text-center title-2">mes Reclamation</h3>
+                    </div>
+                    <hr>
+
+
+                    <table class="table  nomargin" cellspacing="0" width="100%" id="example">
+                        <thead>
+
+                        <tr>
+
+                            <th>Id</th>
+                            <th>Evenement</th>
+
+                            <th>Priorite</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Status</th>
+
+                            <th>action</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        {% for r in reclamations %}
+                            <tr class="tr-shadow">
+
+                                <td>{{ r.id}}</td>
+                                <td>
+                                    <span class="block-email">{{ r.evenement.description }}</span>
+                                </td>
+
+
+                                <td>{{ r.priorite }} %</td>
+                                <td>{{ r.titre }}</td>
+                                <td>{{ r.description }}</td>
+
+
+                                <td> <span class="status--process">{{ r.dateReclamation|date("Y/m/d") }}</span>
+                                </td>
+
+                                <td>
+                                    <span class="status--process">
+                                        {% if r.status %}
+                                            Traite
+                                        {% else %}
+                                            non traite
+                                            {% endif %}
+                                        </span>
+
+
+                                </td>
+
+
+
+
+                                <td>
+                                    <a href="#" onclick="confirmDelete({{ r.id }})"> <button class="btn btn-success" > supprimer</button> </a>
+                                    <a href="{{ path('modifierReclamation',{'id':r.id}) }}">
+                                        <button class="btn btn-success" > modifier</button>
+                                    </a>
+
+
+                                </td>
+                            </tr>
+
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <br><br>
+
+
+{% endblock %}
+
+{% block js %}
+
+    <script type="text/javascript" src="{{ asset('jTable/jquery-2.1.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('jTable/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('notif/lobibox.js') }}"></script>
+    <script type="text/javascript">$(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+    <script>
+        function confirmDelete(data){
+            console.log(data)
+            Lobibox.confirm({
+                msg: "Voulez vous supprmier cette reclamation",
+                callback: function ($this, type, ev) {
+                    if(type =="yes"){
+                        window.location.href = "supprimer/"+data
+                    }
+                }
+            });
+        }
+    </script>
+
+{% endblock %}

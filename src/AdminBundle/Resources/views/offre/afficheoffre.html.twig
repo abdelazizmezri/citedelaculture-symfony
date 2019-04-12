@@ -1,0 +1,215 @@
+{% extends "baseBack.html.twig" %}
+{% block container %}
+
+    <link href="{{ asset('jTable/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{{ asset('moment.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('notif/lobibox.min.css') }}"/>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- DATA TABLE -->
+            <h3 class="title-5 m-b-35">Liste Des Offres</h3>
+            <td class="table-responsive table-responsive-data2">
+                <html>
+
+                <!-- app/Resources/views/template.html.twig -->
+
+
+                <body>
+
+                </body>
+                </html>
+                <div class="row">
+                    <div class="col-md-1"> </div>
+                    <div class="col-md-10">
+                        <div class="sidebar-search">
+                          <!--  <div class="input-group custom-search-form">
+                                <input type="text" id="search" class="form-control" placeholder="Recherche">
+                            </div>
+                            <!-- /input-group -->
+                        </div>
+                        <br>
+                       </div>
+                    <div class="col-md-1"> </div>
+
+
+                    <div class="col-md-10" style="margin-left: 10px !important;">
+                        <table class="table  nomargin" cellspacing="0" width="100%" id="example">
+                            <thead>
+
+                            <tr>
+
+                                <th>Id</th>
+                                <th>Evenement</th>
+                                <th>Image</th>
+                                <th>Remise</th>
+                                <th>Prix Debut</th>
+                                <th>Prix Final</th>
+                                <th>date debut</th>
+                                <th>date Fin</th>
+
+                                <th>description</th>
+                                <th>likes</th>
+                                <th>dislikes</th>
+                                <th>status</th>
+                                <th>action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="ajax">
+                            {% for c in offres %}
+                            <tr class="tr-shadow">
+
+                                <td>{{ c.id }}</td>
+                                <td>
+                                    <span class="block-email">{{ c.evenement.description }}</span>
+                                </td>
+
+
+                                <td><img src="{{ asset('') }}{{ vich_uploader_asset(c, 'imageFile') }}"></td>
+
+
+                                <td>{{ c.remise }} %</td>
+                                <td>{{ c.prixDebut }}</td>
+                                <td>{{ c.prixFinal }}</td>
+
+
+                                <td> <span class="status--process">{{ c.dateDebut|date("Y/m/d") }}</span>
+                                </td>
+                                <td>
+                                    <span class="status--process">{{ c.dateFin|date("Y/m/d") }}</span>
+                                </td>
+                                <td>
+                                        <span class="status--process">{{ c.description }}</span>
+
+
+                                </td>
+                                <td>
+                                    <span class="status--process">{{ c.likesnumber }}</span>
+
+
+                                </td>
+                                <td>
+                                    <span class="status--process">{{ c.dislikesnumber }}</span>
+
+
+                                </td>
+                                <td>
+                                    {% if(c.status == 1) %}
+                                    <span class="status--process">En cour</span>
+                                        {% else %}
+                                            <span class="status--denied">Terminé</span>
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+                                    <a href="#" onclick="confirmDelete({{ c.id }})"> supprimer</a>
+                                    <a href="{{ path('updateoffre',{'id':c.id}) }}"> modifier </a>
+
+
+                                </td>
+                            </tr>
+
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+    </div>
+
+    <div class="navigation">
+        {{ knp_pagination_render(offres) }}
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $("#search").keyup(function() {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNav").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('ajax_search') }}",
+                        data: {
+                            'q' : value
+                        },
+                        dataType: "text",
+                        success: function(msg){
+                            if(msg=="false"){
+                                $('#ajax').empty();
+                            }else{
+                                $('#ajax').empty();
+                                    var result = JSON.parse(msg);
+                                  //  console.log(result)
+                                result.forEach(data =>{
+                                    $('#ajax').append('<tr class="tr-shadow">')
+                                        $('#ajax').append("<td>"+data.id+"</td>")
+                                        $('#ajax').append('  <td> <span class="block-email">'+data.evenement.description+'</span> </td>')
+                                    $('#ajax').append(' <td><img src="http://localhost/citedelaculture1/web//uploads/images/offre/'+data.image+'"></td>')
+                                    $('#ajax').append('  <td> <span >'+data.remise+' %</span> </td>')
+                                    $('#ajax').append('  <td> <span >'+data.prixDebut+'</span> </td>')
+                                    $('#ajax').append('  <td> <span >'+data.prixFinal+'</span> </td>')
+                                    $('#ajax').append('<td> <span class="status--process">'+moment(data.dateDebut).add(1, "days").format('Y/MM/d') +'</span> </td>')
+                                    $('#ajax').append('<td> <span class="status--process">'+ moment(data.dateFin).add(1, "days").format('Y/MM/d')  +'</span> </td>')
+                                    $('#ajax').append('<td> <span class="status--process">'+data.description+'</span> </td>')
+                                    $('#ajax').append('<td> <span class="status--process">'+data.likesnumber+'</span> </td>')
+                                    $('#ajax').append('<td> <span class="status--process">'+data.dislikesnumber+'</span> </td>')
+                                    if(data.status){
+                                        $('#ajax').append('<td> <span class="status--process">En cour</span></td>')
+                                    }else{
+                                        $('#ajax').append('<td> <span class="status--denied">En cour</span></td>')
+                                    }
+
+                                    $('#ajax').append('<td>  <a href="#" onclick="confirmDelete('+data.id+')"> supprimer</a> <a href="updateoffre/'+data.id+'" > modifier</a> </td>')
+
+
+                                    $('#ajax').append('</tr>')
+                                }
+
+                            )
+
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ asset('jTable/jquery-2.1.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('jTable/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('notif/lobibox.js') }}"></script>
+    <script type="text/javascript">$(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+
+
+    <script>
+       function confirmDelete(data){
+           console.log(data)
+            Lobibox.confirm({
+                msg: "Voulez vous supprmier cet offre",
+                callback: function ($this, type, ev) {
+                    if(type =="yes"){
+                        window.location.href = "deleteoffre/"+data
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}
