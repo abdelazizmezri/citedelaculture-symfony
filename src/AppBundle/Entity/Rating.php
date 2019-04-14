@@ -23,7 +23,7 @@ class Rating
 
     /**
      * @ORM\ManyToOne(targetEntity="Offre")
-     * @ORM\JoinColumn(name="offre",referencedColumnName="id",nullable=true)
+     * @ORM\JoinColumn(name="offre",referencedColumnName="id",onDelete="CASCADE")
      */
     private $offre;
 
@@ -70,7 +70,7 @@ class Rating
     /**
      * @param mixed $offre
      */
-    public function setOffre($offre): void
+    public function setOffre($offre)
     {
         $this->offre = $offre;
     }
@@ -87,7 +87,7 @@ class Rating
     /**
      * @param mixed $user
      */
-    public function setUser($user): void
+    public function setUser($user)
     {
         $this->user = $user;
     }
@@ -95,7 +95,7 @@ class Rating
     /**
      * @return bool
      */
-    public function isLikes(): bool
+    public function isLikes()
     {
         return $this->likes;
     }
@@ -103,7 +103,7 @@ class Rating
     /**
      * @param bool $like
      */
-    public function setLikes(bool $likes): void
+    public function setLikes( $likes)
     {
         $this->likes = $likes;
     }

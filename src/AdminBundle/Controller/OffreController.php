@@ -43,9 +43,9 @@ class OffreController extends Controller
             $users = $em->getRepository("AppBundle:User")->findBy(array('subscribe'=>true));
             if($users){
 
-               /* foreach ($users as $us){
+                foreach ($users as $us){
                     $this->sms($us->getTel(),$offre);
-                }*/
+                }
             }
 
 
