@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6c293bc-2177-419a-a445-652736f6333f" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/baseBack.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/baseBack.html.twig" afterDir="false" />
@@ -253,6 +254,15 @@
       <change beforePath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Util/UserManipulator.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Util/UserManipulator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Validator/Initializer.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Validator/Initializer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/composer.json" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/Composer_4_3_19_2_32_PM_c.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_4_3_19_4_03_PM_s.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_13_04_19_15_38_s.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/piNesrine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/piNesrine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> master
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -260,9 +270,10 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
+<<<<<<< HEAD
   <component name="FUSProjectUsageTrigger">
     <session id="-345951036">
       <usages-collector id="statistics.lifecycle.project">
@@ -329,10 +340,20 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="317">
               <caret line="72" column="46" selection-start-line="72" selection-start-column="46" selection-end-line="72" selection-end-column="46" />
+=======
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/console">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/baseBack.html.twig">
           <provider selected="true" editor-type-id="text-editor">
@@ -350,6 +371,13 @@
               <folding>
                 <element signature="e#42#102#0#PHP" expanded="true" />
               </folding>
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -388,11 +416,6 @@
   </component>
   <component name="FrameworkCommandLineHistory">
     <commandsHistory>
-      <command text="s doctrine:mapping:convert annotation src/" />
-      <command text="s doctrine:database:create" />
-      <command text="s doctrine:mapping:convert annotation ./src/" />
-      <command text="s doctrine:mapping:import &quot;App\Entity&quot; annotation --path=src/Entity" />
-      <command text="s doctrine:mapping:import &quot;App\Entity&quot; annotation " />
       <command text="s doctrine:mapping:import &quot;AppBundle&quot; annotation " />
       <command text="s doctrine:mapping:import &quot;AppBundle&quot; annotation  --force" />
       <command text="s doctrine:mapping:import --force  &quot;AppBundle&quot; annotation  " />
@@ -411,16 +434,31 @@
       <command text="s doctrine:schema:update --forece" />
       <command text="s doctrine:schema:update --force" />
       <command text="php bin/console notifications:trigger &quot;Your message&quot; &quot;test2&quot;" />
+<<<<<<< HEAD
       <command text="php bin/console notifications:trigger &quot;Your message&quot; &quot;test&quot;" />
+=======
+      <command text="composer install" />
+      <command text="composer.json install" />
+      <command text="composer.json" />
+      <command text="s doctrine:schema:update --force " />
+      <command text="s fos:user:create aziz aziz@aziz.tn aziz" />
+      <command text="s fos:user:create admin admin@admin.tn admin" />
+      <command text="s fos:user:promote admin ROLE_ADMIN" />
+>>>>>>> master
     </commandsHistory>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
+=======
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
+>>>>>>> master
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Message.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Note.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Notification.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Organisme.php" />
@@ -471,14 +509,9 @@
         <option value="$PROJECT_DIR$/app/Resources/views/baseFront.html.twig" />
         <option value="$PROJECT_DIR$/src/AdminBundle/Controller/OffreController.php" />
         <option value="$PROJECT_DIR$/src/frontBundle/Resources/views/reclamation/mesReclamation.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -538,11 +571,19 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+<<<<<<< HEAD
     <option name="x" value="675" />
     <option name="width" value="700" />
+=======
+    <option name="x" value="-29" />
+    <option name="y" value="182" />
+    <option name="width" value="1348" />
+>>>>>>> master
     <option name="height" value="690" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -553,24 +594,25 @@
         <subPane>
           <expand>
             <path>
-              <item name="piNesrine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="piNesrine" type="462c0819:PsiDirectoryNode" />
+              <item name="citepi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="citepi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="piNesrine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="piNesrine" type="462c0819:PsiDirectoryNode" />
+              <item name="citepi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="citepi" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="piNesrine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="piNesrine" type="462c0819:PsiDirectoryNode" />
+              <item name="citepi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="citepi" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="frontBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="piNesrine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="piNesrine" type="462c0819:PsiDirectoryNode" />
+              <item name="citepi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="citepi" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="frontBundle" type="462c0819:PsiDirectoryNode" />
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -590,6 +632,15 @@
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="reclamation" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="citepi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="citepi" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+>>>>>>> master
             </path>
           </expand>
           <select />
@@ -606,11 +657,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\citepi\app\config" />
+      <recent name="C:\wamp64\www\citepi" />
       <recent name="C:\wamp64\www\piNesrine\src\frontBundle\Resources\views\reclamation" />
       <recent name="C:\wamp64\www\piNesrine\src\AdminBundle\Resources\views\offre" />
       <recent name="C:\wamp64\www\piNesrine\src\AppBundle\Controller" />
-      <recent name="C:\wamp64\www\piNesrine\src\AppBundle" />
-      <recent name="C:\wamp64\www\piNesrine\src\frontBundle\Controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\piNesrine\app\Resources\views" />
@@ -641,12 +692,19 @@
       <workItem from="1554283580424" duration="7249000" />
       <workItem from="1554297817528" duration="9432000" />
       <workItem from="1554913437922" duration="16424000" />
+<<<<<<< HEAD
       <workItem from="1555067245500" duration="13241000" />
       <workItem from="1555242147827" duration="1476000" />
+=======
+      <workItem from="1555067245500" duration="12618000" />
+      <workItem from="1555164133786" duration="763000" />
+      <workItem from="1555165514239" duration="1089000" />
+>>>>>>> master
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="47822000" />
   </component>
   <component name="ToolWindowManager">
@@ -654,6 +712,14 @@
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26040268" />
+=======
+    <option name="totallyTimeSpent" value="47575000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2579425" />
+>>>>>>> master
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -666,8 +732,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Command Line Tools Console" order="10" visible="true" weight="0.32907802" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32907802" />
+      <window_info active="true" anchor="bottom" id="Command Line Tools Console" order="10" visible="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -678,10 +744,13 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
+    </ignored-roots>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evenement.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -689,6 +758,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> master
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/reclamationType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="878">
@@ -772,9 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Rating.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -848,16 +916,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1667" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1008" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserInterface.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManager.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -868,13 +928,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7089">
-          <caret line="426" column="30" lean-forward="true" selection-start-line="426" selection-start-column="30" selection-end-line="426" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php" />
     <entry file="file://$PROJECT_DIR$/src/AdminBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-12">
@@ -1023,6 +1077,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
           <caret line="72" column="46" selection-start-line="72" selection-start-column="46" selection-end-line="72" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/console">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Club.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="83" column="5" lean-forward="true" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
         </state>
       </provider>
     </entry>
