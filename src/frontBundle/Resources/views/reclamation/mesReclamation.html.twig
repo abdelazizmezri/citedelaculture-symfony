@@ -70,12 +70,14 @@
 
 
                                 <td>
+                                    {% if not r.status %}
+
                                     <a href="#" onclick="confirmDelete({{ r.id }})"> <button class="btn btn-success" > supprimer</button> </a>
                                     <a href="{{ path('modifierReclamation',{'id':r.id}) }}">
                                         <button class="btn btn-success" > modifier</button>
                                     </a>
 
-
+                                    {% endif %}
                                 </td>
                             </tr>
 

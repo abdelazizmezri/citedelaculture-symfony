@@ -106,9 +106,9 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/web%app.path.product_images%'
 
 notifications:
-    app_id:     "724000"
-    app_key:    "8304d059529e69c493f2"
-    app_secret: "b562c1d9e78ce49bde09"
+    app_id:     "761953"
+    app_key:    "e5349bdcf4aadfa3bce8"
+    app_secret: "480247cdf8734eb0fbc5"
     cluster:    "eu"
     # Optional
     # Default false: work without ssl encryption

@@ -225,8 +225,8 @@ class OffreController extends Controller
     public function sms($reciver , $offre){
         $token = "";
         $config = array(
-            'clientId' => 'bM1i7lsiESPPobiDuAeWwqkMjQOIsp5A',
-            'clientSecret' => 'kwKGT0qxQM7UlGIJ'
+            'clientId' => 'uGP4onF5EQzT0zGBH1IuS2EE41cnPLAK',
+            'clientSecret' => 'yTqoejJqCYpzy9x2'
         );
 
         $osms = new Osms($config);
